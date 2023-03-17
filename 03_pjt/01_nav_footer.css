@@ -1,0 +1,31 @@
+/* 01_nav_footer.css */
+/* 아래에 코드를 작성해 주세요. */
+
+/* section {
+    padding-top: 50px; padding-bottom: 50px;
+  } */
+
+body {
+    padding-top: 80px;
+}
+
+footer {
+    position : fixed;
+    bottom : 0;
+    left : 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* #wrapper {
+  height: auto;
+  min-height: 100%;
+  margin-bottom: 40px;
+}
+
+footer {
+  height: 30px;
+  position: relative;
+  transform: translateY(-100%);
+  text-align: center;
+} */
