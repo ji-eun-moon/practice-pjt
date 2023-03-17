@@ -8,7 +8,7 @@
 - Visual Studio Code
 - Python 3.9+
 ## 필수 라이브러리
-- Reauests
+- requests
 ## API
 - [TMDB API](https://www.themoviedb.org/) - 영화 정보 및 API 서비스 
 ## 공통 사항
@@ -23,7 +23,7 @@
 #### Consideration
 - 필요한 데이터를 얻기 위해 API 요청하는 방법과 requsts 라이브러리를 사용하는 방법에 대해 알 수 있었다. 
 - len 함수를 이용하여 result 길이를 계산해 영화 개수를 구하였다. 
-
+---
 ### Problem_b
 #### Description
 - 인기 영화 목록 중 평점이 8점 이상인 영화 목록 출력
@@ -32,7 +32,7 @@
 #### Consideration
 - for 문을 이용하여 영화 목록 중 평점이 8점 이상인 영화만을 추출하였다. 
 - Problem_a 와 비슷한 문제여서 어렵지 않게 해결하였다. 
-
+---
 ### Problem_c
 #### Description
 - 인기 영화 목록을 평점이 높은 순으로 5개의 영화 데이터 목록 출력
@@ -40,7 +40,7 @@
 - 응답 받은 데이터 중 평점을 기준으로 평점이 높은 영화 5개 정보를 리스트로 반환하는 함수 작성
 #### Consideration
 - 영화목록을 lambda 함수를 이용하여 평점(vote_average) 기준으로 내림차순 정렬하고 for문을 이용하여 상위 다섯개의 영화를 반환하였다. 
-
+---
 ### Problem_d
 #### Description
 - 제공된 영화목록을 검색하여 추천 영화 목록 출력
@@ -49,7 +49,7 @@
 #### Consideration
 - 영화 id 검색에 실패할경우, 추천 영화가 없을 경우, 있을 경우 세 가지 리턴 값을 정해야 했는데 조건문 작성 위치가 중요하다는 것을 알게 되었다.
 - 영화 추천 목록 url을 작성할 때 처음에 movie_id를 query string에 적어서 데이터 불러오는데 실패했는데, url을 다시 자세히 보고 위치를 맞게 작성하였더니 해결하였다. 
-
+---
 ### Problem_e
 #### Description
 - 제공된 영화목록을 검색하여 해당 영화의 출연진(cast)과 스태프(crew)중 연출진의 이름 출력
