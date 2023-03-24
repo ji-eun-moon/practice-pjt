@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center m-5">INDEX</h1>
+<div class="d-flex justify-content-end">
+    <a href="{% url 'movies:create' %}" class="btn btn-success">CREATE</a>
+</div>
+<hr>
+{% for movie in movies %}
+<p><a href="{% url 'movies:detail' movie.pk %}" class = "text-decoration-none fs-5 fw-bold text-dark">{{movie.title}}</a></p>
+<p class="text-warning">★ {{movie.score}}</p>
+<hr>
+{% endfor %}
+
+{% endblock content %}
