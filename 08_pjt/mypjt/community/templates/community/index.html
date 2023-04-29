@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <hr>
+    <h1 class="mb-4" style="text-align:center;">💬 Community 💬</h1>
+    <hr>
+    <div class="row">
+      {% for review in reviews %}
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align:center;">{{ review.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">작성자: <a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></h6>
+              <p class="card-text">{{ review.content }}</p>
+              <hr>
+              <span class="card-text">
+                <span id="likes-count-{{ review.pk }}">{{ review.like_users.all|length }}</span> 명이 이 글을 좋아합니다.
+              </span>
+              <form class="like-forms" data-review-id="{{ review.pk }}">
+                {% csrf_token %}
+                {% if user in review.like_users.all %}
+                  <button type="submit" id="like-{{ review.pk }}" class="btn btn-outline-success">좋아요 취소</button>
+                {% else %}
+                  <button type="submit" id="like-{{ review.pk }}" class="btn btn-success">좋아요</button>
+                {% endif %}
+              </form>
+              <a href="{% url 'community:detail' review.pk %}" class="btn btn-outline-secondary">상세보기</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block script %}
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+  const forms = document.querySelectorAll('.like-forms')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault()
+      
+      const reviewId = event.target.dataset.reviewId
+
+      axios({
+        method: 'post',
+        url: `/community/${reviewId}/like/`,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+        .then((response) => {
+
+          const isLiked = response.data.is_liked
+          const likeBtn = document.querySelector(`#like-${reviewId}`)
+
+          const likeCountTag = document.querySelector(`#likes-count-${reviewId}`)
+          const likesCount = response.data.likes_count
+          likeCountTag.innerText = likesCount
+
+          likeBtn.classList.toggle('btn-success')
+          likeBtn.classList.toggle('btn-outline-success')
+          
+          if (isLiked === true){
+            likeBtn.innerText = '좋아요 취소'
+          } else {
+            likeBtn.innerText = '좋아요'
+          }
+          
+          
+        })
+        
+        .catch((error) => {
+          console.log(error.response)
+        })
+  })
+})
+
+</script>
+{% endblock script %}

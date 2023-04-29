@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <hr>
+      <div class="col-md-12 text-center">
+        <h3 class="mb-4"><strong>"{{movie.title}}"</strong></h3>
+        <p class="card-text">
+          {% for genre in movie.genres.all %}
+            {{ genre.name }}
+            {% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+        <h5>비슷한 장르의 영화</h5>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      {% for movie in similar_movies %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src="{{ movie.poster_path }}" alt="{{ movie.title }} poster">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ movie.title }}</h5>
+              <p class="card-text"><strong>장르: </strong>
+                {% for genre in movie.genres.all %}
+                  {{ genre.name }}
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+              <p class="card-text"><strong>평점:</strong> {{ movie.vote_average }}</p>
+              <div class="mt-auto">
+                <a href="{% url 'movies:detail' movie.pk %}" class="btn btn-sm btn-outline-secondary mx-auto d-block">상세 보기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-md-12">
+          <p>추천할 영화가 없습니다.</p>
+        </div>
+      {% endfor %}
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="{% url 'movies:detail' movie.pk %}" class="btn btn-primary">back</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

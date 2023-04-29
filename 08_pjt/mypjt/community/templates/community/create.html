@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <hr>
+  <h1 class="text-center">CREATE</h1>
+  <hr>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <hr>
+  <a href="{% url 'community:index' %}" class="btn btn-secondary">Back</a>
+{% endblock %}
