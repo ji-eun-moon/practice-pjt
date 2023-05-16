@@ -5,7 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const API_URL = 'https://api.themoviedb.org/3/movie/top_rated/'
-const API_KEY = 'ec7cb21d2c86952874cdb3ff92cd1dfd'
+const API_KEY = 'API_KEY'
 
 export default new Vuex.Store({
   state: {
