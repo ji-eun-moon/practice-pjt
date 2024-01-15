@@ -2,7 +2,7 @@
 
 > 웹 개발 실습 프로젝트입니다.
 > 
-> HTML, CSS, BootStrap, Django, Vue
+> HTML, CSS, Database , Django, Vue
 
 | 프로젝트 | 학습 내용 |
 |------|----|
